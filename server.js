@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const ngrok = require('ngrok');
+const PORT = process.env.PORT || 3030;
 const server = require("http").Server(app);
 const { v4: uuidv4 } = require("uuid");
 const io = require("socket.io")(server);
@@ -57,4 +59,12 @@ io.on("connection", (socket) => {
     });
 });
 
-server.listen(process.env.PORT || 3030);
+server.listen(PORT);
+(async function(){
+    const url = await ngrok.connect({
+        proto:'http',
+        addr:PORT,
+        authtoken:'2ItcO1pxPHwKl81EJuLodWGgOVi_5sd5GCq3BQbR1a2jJuFr3'
+    });
+    console.log(url);
+})();
