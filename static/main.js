@@ -16,7 +16,7 @@ window.onload = () => {
 var peer = new Peer(undefined, {
     path: "/peerjs",
     host: "/",
-    port: "3030",
+    port: "3000",
 });
 
 let myVideoStream;
@@ -104,7 +104,7 @@ const cancel = () => {
 
 const copy = async() => {
     const roomid = document.getElementById("roomid").innerText;
-    await navigator.clipboard.writeText("http://localhost:3030/join/" + roomid);
+    await navigator.clipboard.writeText("http://localhost:3000/join/" + roomid);
 };
 const invitebox = () => {
     $("#getCodeModal").modal("show");
